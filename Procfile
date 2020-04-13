@@ -1,0 +1,1 @@
+web: gunicorn buildForSdg.wsgi --log-file -

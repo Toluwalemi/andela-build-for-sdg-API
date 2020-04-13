@@ -1,12 +1,7 @@
-from django.shortcuts import render
-
 # Create your views here.
 from rest_framework import generics
-from rest_framework.response import Response
 
-from api import serializers
 from api.serializers import EstimatorSerializer
-from api import estimator
 
 
 class UserInputAPIView(generics.CreateAPIView):
