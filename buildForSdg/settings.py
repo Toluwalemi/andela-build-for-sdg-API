@@ -28,7 +28,7 @@ DEBUG = True
 if ENV_TYPE == "HEROKU":
     DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['covid19-estimator-dev.herokuapp.com', '*.covid19-estimator-dev.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
