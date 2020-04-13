@@ -16,3 +16,11 @@ class EstimatorSerializer(serializers.Serializer):
     reportedCases = serializers.IntegerField()
     population = serializers.IntegerField()
     totalHospitalBeds = serializers.IntegerField()
+
+    def create(self, validated_data):
+        return estimator(**validated_data)
+
+    # def update(self, instance, validated_data):
+    #     for field, value in validated_data.items():
+    #         setattr(instance, field, value)
+    #     return instance

@@ -8,3 +8,6 @@ from api.serializers import EstimatorSerializer
 
 class UserInputAPIView(generics.CreateAPIView):
     serializer_class = EstimatorSerializer
+
+    # def list(self, request):
+    #     serializer = serializers.EstimatorSerializer
