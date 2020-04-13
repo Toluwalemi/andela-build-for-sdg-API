@@ -1,10 +1,10 @@
-def estimator(data):
-    avg_income = data['region']['avgDailyIncomeInUSD']
-    avg_income_population = data['region']['avgDailyIncomePopulation']
-    period_type = data['periodType']
-    time_to_elapse = data['timeToElapse']
-    reported_cases = data['reportedCases']
-    total_hospital_beds = data['totalHospitalBeds']
+def estimator(**kwargs):
+    avg_income = kwargs['region']['avgDailyIncomeInUSD']
+    avg_income_population = kwargs['avgDailyIncomePopulation']
+    period_type = kwargs['periodType']
+    time_to_elapse = kwargs['timeToElapse']
+    reported_cases = kwargs['reportedCases']
+    total_hospital_beds = kwargs['totalHospitalBeds']
 
     impact_currently_infected = reported_cases * 10
     severe_impact_currently_infected = reported_cases * 50
@@ -37,7 +37,7 @@ def estimator(data):
         return int((func * avg_income_population * avg_income) / days)
 
     result = {
-        "data": data,
+        "data": kwargs,
         "impact": {
             "currentlyInfected": impact_currently_infected,
             "infectionsByRequestedTime": severe_positive_cases(impact_currently_infected),
