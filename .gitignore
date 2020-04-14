@@ -4,7 +4,6 @@
 .idea/
 __pycache__/
 db.sqlite3
-.env
 local_settings.py
 
 ### Django.Python Stack ###
