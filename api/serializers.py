@@ -1,36 +1,22 @@
 from rest_framework import serializers
 
-from api.estimator import estimator
-
-
-class RegionSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=20)
-    avgAge = serializers.FloatField()
-    avgDailyIncomeInUSD = serializers.CharField(max_length=5)
-    avgDailyIncomePopulation = serializers.FloatField()
+from api.estimator import Estimator, LANGUAGES_CHOICES
 
 
 class EstimatorSerializer(serializers.Serializer):
-    region = RegionSerializer(required=False)
-    # avg_income = serializers.DecimalField(max_digits=5, decimal_places=2)
-    # avg_income_population = serializers.FloatField()
-    periodType = serializers.CharField(max_length=10)
-    timeToElapse = serializers.IntegerField()
-    reportedCases = serializers.IntegerField()
+    period_type = serializers.ChoiceField(choices=LANGUAGES_CHOICES, default='days')
+    time_to_elapse = serializers.IntegerField()
+    reported_cases = serializers.IntegerField()
     population = serializers.IntegerField()
-    totalHospitalBeds = serializers.IntegerField()
+    total_hospital_beds = serializers.IntegerField()
 
-    # def create(self, validated_data):
-    #     return estimator(**validated_data)
-    #
-    # # def update(self, instance, validated_data):
-    # #     instance.region = validated_data.get('region', instance.region)
-    # #     # instance.avg_income = validated_data.get(['region', 'name'], instance.avg_income)
-    # #     # instance.avg_income = validated_data.get(['region', 'avgDailyIncomeInUSD'], instance.avg_income)
-    # #     instance.periodType = validated_data.get(['periodType', 'avgDailyIncomePopulation'], instance.periodType)
-    # #     # instance.period_type = validated_data.get('periodType', instance.avg_income)
-    # #     instance.timeToElapse = validated_data.get('timeToElapse', instance.timeToElapse)
-    # #     instance.reportedCases = validated_data.get('reportedCases', instance.reportedCases)
-    # #     instance.totalHospitalBeds = validated_data.get('totalHospitalBeds', instance.totalHospitalBeds)
-    # #     instance.save()
-    # #     return instance
+    def create(self, validated_data):
+        return Estimator(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.period_type = validated_data.get('period_type', instance.period_type)
+        instance.time_to_elapse = validated_data.get('time_to_elapse', instance.time_to_elapse)
+        instance.reported_cases = validated_data.get('reported_cases', instance.reported_cases)
+        instance.population = validated_data.get('population', instance.population)
+        instance.total_hospital_beds = validated_data.get('totalHospitalBeds', instance.total_hospital_beds)
+        return instance
